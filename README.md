@@ -1,1 +1,16 @@
-https://codesandbox.io/p/sandbox/selective-outlines-d36mw?file=%2Fsrc%2FApp.js%3A27%2C1-33%2C19
+## My Portfolio
+
+
+
+<img src="./github_imgs/cover.png" alt="screenshoot" style="zoom:25%; float: left;" />
+
+
+
+Making websites interactive is cool, so I've decided to build my portfolio in a way that lets you explore it like a game.
+
+There are some simple operating instructions:
+
+- Hold the left mouse button to rotate the view.
+- Double-click the left mouse button to update the map.
+- Hover over the gift box to view the project overview.
+- Click on the icons in the information card to visit the project demo page and the GitHub repository.

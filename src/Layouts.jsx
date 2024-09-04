@@ -68,7 +68,8 @@ const Layouts = () => {
 						<span>Hover</span> over the gift box to view the project overview.
 					</li>
 					<li>
-						<span>Click</span> on the gift box to go to the project demo page.
+						<span>Click</span> on the icons in the information card to visit the project demo page and the
+						GitHub repository.
 					</li>
 				</ul>
 			</section>
