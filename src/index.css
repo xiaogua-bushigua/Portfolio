@@ -1,0 +1,32 @@
+@font-face {
+  font-family: 'zaozigongfangtianliti';
+  src: url('/zaozigongfangtianliti.ttf');
+}
+
+html,
+body,
+#root,
+canvas {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.outlined-text {
+  /* 字体颜色 */
+  text-shadow:
+    -1px -1px 0 #757575,
+    /* 上左 */
+    1px -1px 0 #757575,
+    /* 上右 */
+    -1px 1px 0 #757575,
+    /* 下左 */
+    1px 1px 0 #757575;
+  /* 下右 */
+}
+
+li span {
+  color: #585858;
+}
