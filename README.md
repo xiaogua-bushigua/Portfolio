@@ -6,7 +6,7 @@
 
 
 
-Making websites interactive is cool, so I've decided to build my portfolio in a way that lets you explore it like a game.
+Making websites interactive is cool, so I decided to build my portfolio in a way that lets you explore it like a game.
 
 There are some simple operating instructions:
 
