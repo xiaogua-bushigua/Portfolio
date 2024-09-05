@@ -36,7 +36,7 @@ const information = [
 	{
 		title: 'Digital Health Dashboard',
 		cover: './portfolio/body.png',
-		description: `It's a completely personal project. I love graphics effects, and I wanted to create something different and original. That's the reason this project exists.`,
+		description: `It's a completely personal project. I love graphics effects, and I want to create something different and original. That's the reason this project exists.`,
 		technologies: 'React.js, Three.js, GLSL, ECharts.js',
 		stars: 0,
 		link: 'https://3d-human-body.vercel.app',
