@@ -16,3 +16,4 @@ There are some simple operating instructions:
 - Click on the icons in the information card to visit the project demo page and the GitHub repository.
 
 🔗 Live link: [portfolio-liart-kappa-21.vercel.app](https://portfolio-liart-kappa-21.vercel.app/)
+🔗 Creativity comes from https://www.youtube.com/watch?v=HsCYEA_UuZA&t=17s
