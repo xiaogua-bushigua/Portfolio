@@ -30,3 +30,58 @@ canvas {
 li span {
   color: #585858;
 }
+
+.instruction {
+  position: fixed;
+  bottom: 0px;
+  z-index: 999;
+  font-family: 'zaozigongfangtianliti';
+  font-size: 24px;
+  color: #ffffff;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.project {
+  background-color: #8e9bd3;
+  z-index: 999;
+  border-radius: 8px;
+  position: fixed;
+  border: 1px solid #dbdbdb;
+  padding: 12px;
+  box-sizing: border-box;
+  box-shadow: 0 0 12px 0 #eaeaea;
+  color: #fff;
+}
+
+@media screen and (max-width: 1028px) {
+  .instruction {
+    justify-content: center;
+  }
+
+  .project {
+    width: 80%;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+    transition: right 0.5s ease, transform 0.5s ease;
+    transform-origin: right center;
+  }
+}
+
+@media screen and (min-width: 1028px) {
+  .instruction {
+    justify-content: start;
+  }
+
+  .project {
+    width: 20%;
+    right: 20px;
+    top: 50%;
+    translate: 0 -50%;
+    transition: right 0.5s ease, transform 0.5s ease;
+    transform-origin: right center;
+  }
+}

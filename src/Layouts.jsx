@@ -42,56 +42,24 @@ const Layouts = () => {
 					/>
 				</a>
 			</header>
-			<section
-				style={{
-					position: 'fixed',
-					left: '20px',
-					top: '50%',
-					translate: '0 -50%',
-					zIndex: 999,
-					maxWidth: '20%',
-					fontFamily: 'zaozigongfangtianliti',
-					fontSize: '24px',
-					color: '#ffffff',
-					userSelect: 'none',
-				}}
-			>
-				<p className="outlined-text">Operating instructions</p>
-				<ul style={{ paddingLeft: '20px', fontSize: '18px', letterSpacing: '0.04  em' }}>
+			<section className="instruction">
+				<ul style={{ fontSize: '18px', letterSpacing: '0.04em' }}>
 					<li>
-						<span>Hold</span> the left mouse button to rotate the view.
+						<span>Hold</span> the left mouse button/screen to rotate the view.
 					</li>
 					<li>
-						<span>Double-click</span> the left mouse button to update the map.
+						<span>Double-click</span> on the page to update the map.
 					</li>
 					<li>
 						<span>Hover</span> over the gift box to view the project overview.
-					</li>
-					<li>
-						<span>Click</span> on the icons in the information card to visit the project demo page and the
-						GitHub repository.
 					</li>
 				</ul>
 			</section>
 			<section>
 				<div
+					className="project"
 					style={{
-						width: '20%',
-						backgroundColor: '#8e9bd3',
-						zIndex: 999,
-						borderRadius: '8px',
-						position: 'fixed',
-						right: '20px',
 						transform: open ? 'translateX(0%)' : 'translateX(150%)',
-						transition: 'right 0.5s ease, transform 0.5s ease',
-						transformOrigin: 'right center',
-						top: '50%',
-						translate: '0 -50%',
-						border: '1px solid #dbdbdb',
-						padding: '12px',
-						boxSizing: 'border-box',
-						boxShadow: '0 0 12px 0 #eaeaea',
-						color: '#fff',
 					}}
 				>
 					<p
@@ -131,7 +99,7 @@ const Layouts = () => {
 						}}
 						onClick={() => setOpen(false)}
 					/>
-					<a href={information.link} target="_blank">
+					<a href={information.demo} target="_blank">
 						<img src="./icons/demo.png" title="demo" style={{ width: '24px', height: '24px' }} />
 					</a>
 					{information.github && (

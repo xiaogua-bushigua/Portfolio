@@ -1,9 +1,8 @@
-import { Suspense, useState } from 'react';
+import { Suspense, useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, PerspectiveCamera, Environment } from '@react-three/drei';
+import { OrbitControls, PerspectiveCamera, Environment, useProgress } from '@react-three/drei';
 import AllHills from './Hills/AllHills';
 import { Selection, EffectComposer, Outline } from '@react-three/postprocessing';
-import PubSub from 'pubsub-js';
 import Sea from './Environment/Sea';
 import Wall from './Environment/Wall';
 import Floor from './Environment/Floor';
@@ -13,28 +12,36 @@ import Layouts from './Layouts';
 
 function App() {
 	const [refreshKey, setRefreshKey] = useState(0);
+	const [ratio, setRatio] = useState(1);
 
-	const handleRefresh = () => {
-		setRefreshKey((prevKey) => prevKey + 1);
-	};
+	const { progress } = useProgress();
 
-  const handleClick = () => {
-    PubSub.publish('gift', { open: false });
-  }
+	const handleDoubleTap = (() => {
+		let lastTap = 0;
+		return () => {
+			const currentTime = new Date().getTime();
+			const tapLength = currentTime - lastTap;
+			if (tapLength < 500 && tapLength > 0) setRefreshKey((prevKey) => prevKey + 1);
+			lastTap = currentTime;
+		};
+	})();
+
+	useEffect(() => {
+		if (window.innerWidth < 1028) setRatio(1.25);
+	}, []);
 
 	return (
 		<Suspense>
-			<Layouts />
+			{progress === 100 && <Layouts />}
 			<Canvas
 				shadows
 				onCreated={(gl) => {
 					gl.physicallyCorrectLights = true;
 				}}
-				onDoubleClick={handleRefresh}
-        onClickCapture={handleClick}
+				onClick={handleDoubleTap}
 			>
 				<OrbitControls enableZoom={false} enablePan={false} />
-				<PerspectiveCamera makeDefault fov={50} position={[-14, 36, 28]} />
+				<PerspectiveCamera makeDefault fov={50} position={[-32 * ratio, 35 * ratio, 32 * ratio]} />
 				<color args={['#a5c4ed']} attach="background" />
 				<Environment files={'./3d assets/envmap.hdr'} resolution={256} />
 				<pointLight

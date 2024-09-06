@@ -14,13 +14,15 @@ const Gift = ({ position, information }) => {
 	const handlePointerOver = () => {
 		hover(true);
 		document.body.style.cursor = 'pointer';
-		PubSub.publish('gift', { open: true, information });
 	};
 
 	const handlePointerOut = () => {
 		hover(false);
-		// PubSub.publish('gift', { open: false, information });
 		document.body.style.cursor = 'auto';
+	};
+
+	const handleClick = () => {
+		PubSub.publish('gift', { open: true, information });
 	};
 
 	return (
@@ -28,6 +30,7 @@ const Gift = ({ position, information }) => {
 			<group
 				onPointerOver={handlePointerOver}
 				onPointerOut={handlePointerOut}
+				onClick={handleClick}
 				position={position}
 				scale={0.0045}
 				rotation={rotation}

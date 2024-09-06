@@ -11,7 +11,7 @@ const information = [
 		technologies:
 			'React.js, Redux.js, TypeScript, Next.js, NextAuth.js, MongoDB, MySQL, Prisma, ECharts, Tailwind CSS, Radix-UI',
 		stars: 0,
-		link: 'https://yelo-d.vercel.app',
+		demo: 'https://yelo-d.vercel.app',
 		github: 'https://github.com/xiaogua-bushigua/YeloD',
 	},
 	{
@@ -21,7 +21,7 @@ const information = [
 			'This project demonstrates the capability to render beautiful and interactive 3D maps in browsers. 3D maps are often used in web applications to visualize data across various geographical locations.',
 		technologies: 'React.js, Three.js',
 		stars: 43,
-		link: 'https://3d-geo-map.vercel.app',
+		demo: 'https://3d-geo-map.vercel.app',
 		github: 'https://github.com/xiaogua-bushigua/3d-geoMap',
 	},
 	{
@@ -30,7 +30,7 @@ const information = [
 		description: `If you have watched the The Lord of the Rings, you must know what I have done. Yes, it's The Eye of Sauron! In this project, I intend to show browsers can do more than you can imagine. This project is a very casual and interesting attempt on shaders running in browsers.`,
 		technologies: 'React.js, Three.js, GLSL',
 		stars: 0,
-		link: 'https://the-lord-of-rings.vercel.app',
+		demo: 'https://the-lord-of-rings.vercel.app',
 		github: 'https://github.com/xiaogua-bushigua/the-lord-of-rings',
 	},
 	{
@@ -39,7 +39,7 @@ const information = [
 		description: `It's a completely personal project. I love graphics effects, and I want to create something different and original. That's the reason this project exists.`,
 		technologies: 'React.js, Three.js, GLSL, ECharts.js',
 		stars: 0,
-		link: 'https://3d-human-body.vercel.app',
+		demo: 'https://3d-human-body.vercel.app',
 		github: 'https://github.com/xiaogua-bushigua/3d-human-body',
 	},
 ];
