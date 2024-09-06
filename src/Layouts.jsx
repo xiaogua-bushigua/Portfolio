@@ -51,7 +51,7 @@ const Layouts = () => {
 						<span>Double-click</span> on the page to update the map.
 					</li>
 					<li>
-						<span>Hover</span> over the gift box to view the project overview.
+						<span>Click</span> on the gift box to show the project overview.
 					</li>
 				</ul>
 			</section>
