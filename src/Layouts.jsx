@@ -100,14 +100,18 @@ const Layouts = () => {
 						onClick={() => setOpen(false)}
 					/>
 					<a href={information.demo} target="_blank">
-						<img src="./icons/demo.png" title="demo" style={{ width: '24px', height: '24px' }} />
+						<img
+							src="./icons/demo.png"
+							title="demo"
+							style={{ width: '24px', height: '24px', userSelect: 'none' }}
+						/>
 					</a>
 					{information.github && (
 						<a href={information.github} target="_blank">
 							<img
 								src="./icons/github1.png"
 								title="github repo"
-								style={{ width: '24px', height: '24px', marginLeft: '12px' }}
+								style={{ width: '24px', height: '24px', marginLeft: '12px', userSelect: 'none' }}
 							/>
 						</a>
 					)}
