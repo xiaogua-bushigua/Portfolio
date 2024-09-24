@@ -3,13 +3,33 @@ import PubSub from 'pubsub-js';
 
 const Layouts = () => {
 	const [open, setOpen] = useState(false);
-	const [information, setInformation] = useState('');
+	const [stars, setStars] = useState(0);
+	const [information, setInformation] = useState({});
+
 	useEffect(() => {
 		PubSub.subscribe('gift', (msg, data) => {
 			setOpen(data.open);
 			if (data.information) setInformation(data.information);
 		});
 	}, []);
+
+	const getStars = async (url) => {
+		try {
+			const res = await fetch(url);
+			if (!res.ok) {
+				throw new Error('Network response was not ok');
+			}
+			const stars = (await res.json()).stargazers_count;
+			setStars(stars);
+		} catch (error) {
+			setStars(0);
+		}
+	};
+
+	useEffect(() => {
+		getStars(information.stars);
+	}, [information]);
+
 	return (
 		<>
 			<header
@@ -80,10 +100,10 @@ const Layouts = () => {
 						<span style={{ color: '#000000', fontWeight: 'bold' }}>Technologies: </span>
 						<span>{information.technologies}</span>
 					</p>
-					{information.stars > 0 && (
+					{stars !== 0 && (
 						<p>
 							<span style={{ color: '#000000', fontWeight: 'bold' }}>Github Stars: </span>
-							{information.stars}
+							{stars}
 						</p>
 					)}
 					<img
