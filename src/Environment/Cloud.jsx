@@ -1,5 +1,5 @@
 import React from 'react';
-import { Instances, Instance, useTexture } from '@react-three/drei';
+import { Instances, Instance } from '@react-three/drei';
 
 const Cloud = () => {
 	const num = Math.floor(Math.pow(Math.random(), 0.45) * 4);
@@ -8,7 +8,7 @@ const Cloud = () => {
 		<Instances castShadow receiveShadow>
 			<sphereGeometry args={[1, 7, 7]} />
 			<meshStandardMaterial envMapIntensity={0.75} flatShading />
-			{new Array(num).fill(0).map((item, index) => (
+			{new Array(num).fill(0).map((_, index) => (
 				<group
 					key={index}
 					position={[Math.random() * 20 - 10, Math.random() * 7 + 7, Math.random() * 20 - 10]}

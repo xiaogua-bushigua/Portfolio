@@ -61,7 +61,7 @@ const AllHills = ({ refreshKey }) => {
 				// 噪声控制了在不同区域的随机性，而某一小块里呈现相近的值
 				let noise = (noise2D(i * 0.1, j * 0.1) + 1) * 0.5;
 				let height = Math.pow(noise, 1.25) * MAX_HEIGHT;
-
+				// 地形控制
 				setDiffMaps((prev) => {
 					return {
 						...prev,
@@ -71,7 +71,7 @@ const AllHills = ({ refreshKey }) => {
 						],
 					};
 				});
-
+				// 顶部装饰控制
 				if ((getMap(height) === 'dirt2' || getMap(height) === 'sand') && Math.random() > 0.85)
 					setRocks((prev) => {
 						return [...prev, new THREE.Vector3(tilePos(i, j).x, tilePos(i, j).y, height)];

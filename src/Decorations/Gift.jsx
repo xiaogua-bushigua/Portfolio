@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useCallback } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { Select } from '@react-three/postprocessing';
 import PubSub from 'pubsub-js';
