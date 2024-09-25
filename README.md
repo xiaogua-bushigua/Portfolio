@@ -17,4 +17,4 @@ There are some simple operating instructions:
 
 🔗 Live link: [portfolio-liart-kappa-21.vercel.app](https://portfolio-liart-kappa-21.vercel.app/)
 
-🔗 Creativity comes from https://www.youtube.com/watch?v=HsCYEA_UuZA&t=17s
+🔗 Inspired by: https://www.youtube.com/watch?v=HsCYEA_UuZA&t=17s
