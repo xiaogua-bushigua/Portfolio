@@ -15,8 +15,8 @@ function App() {
 	});
 	return (
 		<SceneContext.Provider value={{ global, setGlobal }}>
-			<MainScene />
 			{!global.mainSceneLoaded && <Loading />}
+			<MainScene />
 		</SceneContext.Provider>
 	);
 }
