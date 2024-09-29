@@ -32,13 +32,15 @@ const MainScene = React.memo(() => {
 			if (global.sunTime >= global.timeThreshold + global.waitTime) {
 				if (global.sunTime < global.timeThreshold + global.waitTime + global.transitionTime) {
 					setGlobal({ ...global, transitionStatus: true });
+					if (window.innerWidth < 1028) setRatio(1.25);
+					else setRatio(1);
 				} else setGlobal({ ...global, mainSceneLoaded: true });
 			}
 		}
 	}, [global.sunTime]);
 
 	useEffect(() => {
-		if (window.innerWidth < 1028) setRatio(1.25);
+		setRatio(0);
 	}, []);
 
 	return (

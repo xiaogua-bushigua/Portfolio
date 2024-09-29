@@ -24,8 +24,8 @@ const Loading = () => {
 export default Loading;
 
 const SunCloud = () => {
-	const sunRadius = 1.2;
-	const sunshineDistance = 0.65 + sunRadius;
+	const sunRadius = 0.8;
+	const sunshineDistance = 0.45 + sunRadius;
 	const sunshineNum = 8;
 
 	const [progress, setProgress] = useState(0);
@@ -82,7 +82,7 @@ const SunCloud = () => {
 			<group
 				position={[
 					-(progress / global.timeThreshold) * 0.8 - 1.1,
-					(progress / global.timeThreshold) * 2.5 + 1,
+					(progress / global.timeThreshold) * 2.5 + 0.5,
 					-1.5,
 				]}
 			>
@@ -93,7 +93,7 @@ const SunCloud = () => {
 				</mesh>
 				{/* sunshine */}
 				<Instances>
-					<planeGeometry args={[0.2, 1, 10]} />
+					<planeGeometry args={[0.15, 0.6, 10]} />
 					<meshBasicMaterial color={'#ffae00'} />
 					<group rotation={[-Math.PI / 4, 0, global.sunTime * 0.8]}>
 						{new Array(sunshineNum).fill(0).map((_, index) => (
