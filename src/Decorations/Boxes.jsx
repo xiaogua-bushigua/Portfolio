@@ -44,7 +44,7 @@ const information = [
 	},
 ];
 
-const Boxes = () => {
+const Boxes = React.memo(() => {
 	const [boxes, setBoxes] = useState([]);
 
 	// 挑选出宝箱的位置
@@ -82,6 +82,6 @@ const Boxes = () => {
 			))}
 		</>
 	);
-};
+});
 
 export default Boxes;

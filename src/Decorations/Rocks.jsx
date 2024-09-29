@@ -1,7 +1,7 @@
 import React from 'react';
 import { Instances, Instance, useTexture } from '@react-three/drei';
 
-const Rocks = ({ rocks }) => {
+const Rocks = React.memo(({ rocks }) => {
 	const stone = useTexture('./3d assets/stone.png');
 
 	const px = Math.random() * 0.4;
@@ -17,6 +17,6 @@ const Rocks = ({ rocks }) => {
 			))}
 		</Instances>
 	);
-};
+});
 
 export default Rocks;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Instances, Instance, useTexture } from '@react-three/drei';
 
-const Trees = ({ trees }) => {
+const Trees = React.memo(({ trees }) => {
 	const grass = useTexture('./3d assets/tree.jpg');
 	const treeHeight = Math.random() + 1.25;
 
@@ -30,6 +30,6 @@ const Trees = ({ trees }) => {
 			))}
 		</Instances>
 	);
-};
+});
 
 export default Trees;
