@@ -29,7 +29,7 @@ const AllHills = ({ refreshKey }) => {
 	const { global, setGlobal } = useContext(MyContext);
 	let newRocks = [];
 	let newTrees = [];
-  let newBoxes = [];
+	let newBoxes = [];
 	let newDiffMaps = {
 		dirt: [],
 		dirt2: [],
@@ -49,7 +49,6 @@ const AllHills = ({ refreshKey }) => {
 	});
 	const [rocks, setRocks] = useState([]);
 	const [trees, setTrees] = useState([]);
-	const [boxes, setBoxes] = useState([]); // 添加 boxes 状态
 
 	useEffect(() => {
 		setRocks([]);
@@ -64,7 +63,6 @@ const AllHills = ({ refreshKey }) => {
 		});
 
 		const noise2D = createNoise2D();
-		// let newBoxes = [...boxes]; // 保持原来的 boxes，防止重置
 
 		for (let i = -15; i < 15; i++) {
 			for (let j = -15; j < 15; j++) {
@@ -93,16 +91,14 @@ const AllHills = ({ refreshKey }) => {
 		setDiffMaps(newDiffMaps);
 		setRocks(newRocks);
 		setTrees(newTrees);
-		setBoxes(() => {
-			setGlobal({
-				...global,
-				gift: {
-					...global.gift,
-					positions: newBoxes,
-				},
-			});
-			return newBoxes;
-		}); // 更新 boxes
+
+		setGlobal({
+			...global,
+			gift: {
+				...global.gift,
+				positions: newBoxes,
+			},
+		});
 	}, [refreshKey]);
 
 	return (
