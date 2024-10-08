@@ -16,7 +16,7 @@ const MainScene = React.memo(() => {
 	const { progress } = useProgress();
 	const { global, setGlobal } = useContext(SceneContext);
 	const [ratio, setRatio] = useState(1);
-  const [size, setSize] = useState(1);
+	const [size, setSize] = useState(0.1);
 
 	const handleDoubleTap = (() => {
 		let lastTap = 0;
@@ -35,7 +35,7 @@ const MainScene = React.memo(() => {
 					setGlobal({ ...global, transitionStatus: true });
 					if (window.innerWidth < 1028) setRatio(1.25);
 					else setRatio(1);
-          setSize(100);
+					setSize(100);
 				} else setGlobal({ ...global, mainSceneLoaded: true });
 			}
 		}

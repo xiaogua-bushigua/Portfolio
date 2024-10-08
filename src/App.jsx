@@ -22,5 +22,3 @@ function App() {
 }
 
 export default App;
-
-// 1. 写个假等待，waitTime到来前不渲染MainScene, waitTime到来后渲染MainScene, progress完成后，loading开始transition
