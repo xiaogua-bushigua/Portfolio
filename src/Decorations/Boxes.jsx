@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useMemo, useContext } from 'react';
 import Gift from './Gift';
-import Pubsub from 'pubsub-js';
+import { MyContext } from '../App';
 
 const information = [
 	{
@@ -45,11 +45,13 @@ const information = [
 ];
 
 const Boxes = React.memo(() => {
-	const [boxes, setBoxes] = useState([]);
-
+	const { global } = useContext(MyContext);
 	// 挑选出宝箱的位置
-	function getWorks(arr, count) {
+	const getWorks = useMemo(() => {
+		const arr = global.gift.positions;
+		const count = 4; // 需要选择 4 个
 		if (arr.length < count) return arr;
+
 		// 创建一个副本，避免修改原始数组
 		let shuffled = arr.slice();
 		let selected = [];
@@ -63,17 +65,10 @@ const Boxes = React.memo(() => {
 			shuffled.splice(randomIndex, 1);
 		}
 		return selected;
-	}
-
-	useEffect(() => {
-		Pubsub.subscribe('boxes', (msg, data) => {
-			setBoxes(data);
-		});
-	}, []);
-
+	}, [global.gift.positions]);
 	return (
 		<>
-			{getWorks(boxes, 4).map((item, index) => (
+			{getWorks.map((item, index) => (
 				<Gift
 					key={'work_' + index}
 					position={[item.x, item.z + 0.1, item.y]}

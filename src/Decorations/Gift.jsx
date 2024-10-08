@@ -1,10 +1,11 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useContext } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { Select } from '@react-three/postprocessing';
-import PubSub from 'pubsub-js';
+import { MyContext } from '../App';
 
 const Gift = ({ position, information }) => {
 	const { nodes, materials } = useGLTF('/3d assets/a_gift_box.glb');
+	const { global, setGlobal } = useContext(MyContext);
 	const [hovered, hover] = useState(null);
 
 	const rotation = useMemo(() => {
@@ -22,7 +23,7 @@ const Gift = ({ position, information }) => {
 	};
 
 	const handleClick = () => {
-		PubSub.publish('gift', { open: true, information });
+		setGlobal({ ...global, gift: { ...global.gift, open: true, information } });
 	};
 
 	return (

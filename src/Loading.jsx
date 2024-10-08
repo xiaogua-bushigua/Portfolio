@@ -3,7 +3,7 @@ import { Instances, Instance, Html } from '@react-three/drei';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
 import { useState } from 'react';
-import { SceneContext } from './App';
+import { MyContext } from './App';
 
 const Loading = () => {
 	return (
@@ -30,16 +30,16 @@ const SunCloud = () => {
 
 	const [progress, setProgress] = useState(0);
 	const [position, setPosition] = useState([0, 0, 0]);
-	const { global, setGlobal } = useContext(SceneContext);
+	const { global, setGlobal } = useContext(MyContext);
 
 	useFrame((state) => {
 		const t = state.clock.getElapsedTime();
-		setGlobal({ ...global, sunTime: t });
-		if (t < global.timeThreshold) {
+		setGlobal({ ...global, scene: { ...global.scene, sunTime: t } });
+		if (t < global.scene.timeThreshold) {
 			setProgress(t);
 		}
-		if (global.transitionStatus) {
-			const startTime = global.sunTime - global.timeThreshold - global.waitTime;
+		if (global.scene.transitionStatus) {
+			const startTime = global.scene.sunTime - global.scene.timeThreshold - global.scene.waitTime;
 			setPosition([0, startTime * 10, -startTime * 3]);
 		}
 	});
@@ -59,7 +59,7 @@ const SunCloud = () => {
 			<pointLight
 				color={'#eba84b'}
 				position={[-10, 8, 10]}
-				intensity={(progress / global.timeThreshold) * 6 + 0.5}
+				intensity={(progress / global.scene.timeThreshold) * 6 + 0.5}
 				distance={300}
 				castShadow
 				shadow-mapSize-height={512}
@@ -81,21 +81,21 @@ const SunCloud = () => {
 			{/* sun */}
 			<group
 				position={[
-					-(progress / global.timeThreshold) * 0.8 - 1.1,
-					(progress / global.timeThreshold) * 2.5 + 0.5,
+					-(progress / global.scene.timeThreshold) * 0.8 - 1.1,
+					(progress / global.scene.timeThreshold) * 2.5 + 0.5,
 					-1.5,
 				]}
 			>
 				{/* sun ball */}
 				<mesh scale={sunRadius}>
 					<sphereGeometry args={[1, 30, 30]} />
-					<meshBasicMaterial color={gradientColor(progress / global.timeThreshold)} />
+					<meshBasicMaterial color={gradientColor(progress / global.scene.timeThreshold)} />
 				</mesh>
 				{/* sunshine */}
 				<Instances>
 					<planeGeometry args={[0.15, 0.6, 10]} />
 					<meshBasicMaterial color={'#ffae00'} />
-					<group rotation={[-Math.PI / 4, 0, global.sunTime * 0.8]}>
+					<group rotation={[-Math.PI / 4, 0, global.scene.sunTime * 0.8]}>
 						{new Array(sunshineNum).fill(0).map((_, index) => (
 							<Instance
 								key={index}
@@ -104,14 +104,14 @@ const SunCloud = () => {
 									sunshineDistance * Math.cos((2 * Math.PI * index) / sunshineNum),
 									0,
 								]}
-								scale={[1, 0.25 * Math.sin(global.sunTime * 3 * ((index % 2) * 2 - 1)) + 0.6, 1]}
+								scale={[1, 0.25 * Math.sin(global.scene.sunTime * 3 * ((index % 2) * 2 - 1)) + 0.6, 1]}
 								rotation={[0, 0, -(index * Math.PI * 2) / sunshineNum]}
 							/>
 						))}
 					</group>
 				</Instances>
 			</group>
-			{global.timeThreshold + global.waitTime > global.sunTime && (
+			{global.scene.timeThreshold + global.scene.waitTime > global.scene.sunTime && (
 				<Html
 					style={{
 						margin: '40px -30px',

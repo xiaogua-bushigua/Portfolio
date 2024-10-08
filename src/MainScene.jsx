@@ -9,12 +9,12 @@ import Floor from './Environment/Floor';
 import Cloud from './Environment/Cloud';
 import Boxes from './Decorations/Boxes';
 import Layouts from './Layouts';
-import { SceneContext } from './App';
+import { MyContext } from './App';
 
 const MainScene = React.memo(() => {
 	const [refreshKey, setRefreshKey] = useState(0);
 	const { progress } = useProgress();
-	const { global, setGlobal } = useContext(SceneContext);
+	const { global, setGlobal } = useContext(MyContext);
 	const [ratio, setRatio] = useState(1);
 	const [size, setSize] = useState(0.1);
 
@@ -30,16 +30,19 @@ const MainScene = React.memo(() => {
 
 	useEffect(() => {
 		if (progress === 100) {
-			if (global.sunTime >= global.timeThreshold + global.waitTime) {
-				if (global.sunTime < global.timeThreshold + global.waitTime + global.transitionTime) {
-					setGlobal({ ...global, transitionStatus: true });
+			if (global.scene.sunTime >= global.scene.timeThreshold + global.scene.waitTime) {
+				if (
+					global.scene.sunTime <
+					global.scene.timeThreshold + global.scene.waitTime + global.scene.transitionTime
+				) {
+					setGlobal({ ...global, scene: { ...global.scene, transitionStatus: true } });
 					if (window.innerWidth < 1028) setRatio(1.25);
 					else setRatio(1);
 					setSize(100);
-				} else setGlobal({ ...global, mainSceneLoaded: true });
+				} else setGlobal({ ...global, scene: { ...global.scene, mainSceneLoaded: true } });
 			}
 		}
-	}, [global.sunTime]);
+	}, [global.scene.sunTime]);
 
 	useEffect(() => {
 		setRatio(0);
@@ -47,7 +50,7 @@ const MainScene = React.memo(() => {
 
 	return (
 		<>
-			{global.mainSceneLoaded && <Layouts />}
+			{global.scene.mainSceneLoaded && <Layouts />}
 			<Canvas
 				style={{ width: size + '%', height: size + '%' }}
 				shadows

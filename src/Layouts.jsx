@@ -1,17 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import PubSub from 'pubsub-js';
+import React, { useEffect, useState, useContext } from 'react';
+import { MyContext } from './App';
 
 const Layouts = () => {
-	const [open, setOpen] = useState(false);
 	const [stars, setStars] = useState(0);
-	const [information, setInformation] = useState({});
-
-	useEffect(() => {
-		PubSub.subscribe('gift', (msg, data) => {
-			setOpen(data.open);
-			if (data.information) setInformation(data.information);
-		});
-	}, []);
+	const { global, setGlobal } = useContext(MyContext);
 
 	const getStars = async (url) => {
 		try {
@@ -27,8 +19,8 @@ const Layouts = () => {
 	};
 
 	useEffect(() => {
-		getStars(information.stars);
-	}, [information]);
+		getStars(global.gift.information.stars);
+	}, [global.gift.information]);
 
 	return (
 		<>
@@ -79,7 +71,7 @@ const Layouts = () => {
 				<div
 					className="project"
 					style={{
-						transform: open ? 'translateX(0%)' : 'translateX(150%)',
+						transform: global.gift.open ? 'translateX(0%)' : 'translateX(150%)',
 					}}
 				>
 					<p
@@ -89,16 +81,16 @@ const Layouts = () => {
 							fontWeight: 'bold',
 						}}
 					>
-						{information.title}
+						{global.gift.information.title}
 					</p>
 					<img
-						src={information.cover}
+						src={global.gift.information.cover}
 						style={{ width: '100%', objectFit: 'contain', border: '1px solid #666', borderRadius: '8px' }}
 					/>
-					<p>{information.description}</p>
+					<p>{global.gift.information.description}</p>
 					<p>
 						<span style={{ color: '#000000', fontWeight: 'bold' }}>Technologies: </span>
-						<span>{information.technologies}</span>
+						<span>{global.gift.information.technologies}</span>
 					</p>
 					{stars !== 0 && (
 						<p>
@@ -117,17 +109,19 @@ const Layouts = () => {
 							zIndex: 999,
 							cursor: 'pointer',
 						}}
-						onClick={() => setOpen(false)}
+						onClick={() => {
+							setGlobal({ ...global, gift: { ...global.gift, information: {}, open: false } });
+						}}
 					/>
-					<a href={information.demo} target="_blank">
+					<a href={global.gift.information.demo} target="_blank">
 						<img
 							src="./icons/demo.png"
 							title="demo"
 							style={{ width: '24px', height: '24px', userSelect: 'none' }}
 						/>
 					</a>
-					{information.github && (
-						<a href={information.github} target="_blank">
+					{global.gift.information.github && (
+						<a href={global.gift.information.github} target="_blank">
 							<img
 								src="./icons/github1.png"
 								title="github repo"
