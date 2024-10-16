@@ -65,7 +65,12 @@ const MainScene = () => {
 				}}
 				onClick={handleDoubleTap}
 			>
-				<OrbitControls enableZoom={false} enablePan={false} />
+				<OrbitControls
+					enableZoom={false}
+					enablePan={false}
+					maxPolarAngle={Math.PI * 0.48}
+					minPolarAngle={Math.PI * 0.2}
+				/>
 				<PerspectiveCamera makeDefault fov={50} position={[-32 * ratio, 35 * ratio, 32 * ratio]} />
 				<color args={['#a5c4ed']} attach="background" />
 				<Environment files={'./3d assets/envmap.hdr'} resolution={256} />

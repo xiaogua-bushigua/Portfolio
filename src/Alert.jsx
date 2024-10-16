@@ -5,19 +5,19 @@ const Alert = () => {
 	const { global } = useContext(MyContext);
 	const [visible, setVisible] = useState(false);
 	useEffect(() => {
-		if (global.gift.positions.length === 0) {
+		if (global.gift.positions.length < 4) {
 			setVisible(true);
 			setTimeout(() => {
 				setVisible(false);
 			}, 5000);
 		}
-	}, []);
+	}, [global.gift.positions]);
 	return (
 		<div
 			style={{
 				position: 'fixed',
 				zIndex: 999,
-				top: '20%',
+				top: '15%',
 				left: '30px',
 				backgroundColor: 'white',
 				padding: '12px',
@@ -27,6 +27,7 @@ const Alert = () => {
 				fontSize: '18px',
 				transform: visible ? 'translateX(0)' : 'translateX(-150%)',
 				transition: 'transform 0.5s ease-out',
+        userSelect: 'none',
 			}}
 		>
 			You need a double-click!
