@@ -49,10 +49,12 @@ const AllHills = ({ refreshKey }) => {
 	});
 	const [rocks, setRocks] = useState([]);
 	const [trees, setTrees] = useState([]);
+	const [boxes, setBoxes] = useState([]);
 
 	useEffect(() => {
 		setRocks([]);
 		setTrees([]);
+		setBoxes([]);
 		setDiffMaps({
 			dirt: [],
 			dirt2: [],
@@ -91,13 +93,16 @@ const AllHills = ({ refreshKey }) => {
 		setDiffMaps(newDiffMaps);
 		setRocks(newRocks);
 		setTrees(newTrees);
-
-		setGlobal({
-			...global,
-			gift: {
-				...global.gift,
-				positions: newBoxes,
-			},
+		setBoxes(() => {
+			console.log(newBoxes);
+			setGlobal({
+				...global,
+				gift: {
+					...global.gift,
+					positions: newBoxes,
+				},
+			});
+			return newBoxes;
 		});
 	}, [refreshKey]);
 
