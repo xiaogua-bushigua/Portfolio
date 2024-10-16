@@ -10,6 +10,7 @@ import Cloud from './Environment/Cloud';
 import Boxes from './Decorations/Boxes';
 import Layouts from './Layouts';
 import { MyContext } from './App';
+import Alert from './Alert';
 
 const MainScene = () => {
 	const { progress } = useProgress();
@@ -30,9 +31,6 @@ const MainScene = () => {
 
 	useEffect(() => {
 		if (progress === 100) {
-			// if (global.gift.positions.length === 0) {
-			// 	setGlobal({ ...global, scene: { ...global.scene, refreshKey: global.scene.refreshKey + 1 } });
-			// }
 			if (global.scene.sunTime >= global.scene.timeThreshold + global.scene.waitTime) {
 				if (
 					global.scene.sunTime <
@@ -53,7 +51,12 @@ const MainScene = () => {
 
 	return (
 		<>
-			{global.scene.mainSceneLoaded && <Layouts />}
+			{global.scene.mainSceneLoaded && (
+				<>
+					<Layouts />
+					<Alert />
+				</>
+			)}
 			<Canvas
 				style={{ width: size + '%', height: size + '%' }}
 				shadows

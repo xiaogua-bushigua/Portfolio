@@ -115,6 +115,9 @@ const SunCloud = () => {
 				<Html
 					style={{
 						margin: '40px -30px',
+            fontFamily: 'zaozigongfangtianliti',
+            letterSpacing: '1px',
+            fontSize: '20px',
 					}}
 				>
 					<span>Loading...</span>
