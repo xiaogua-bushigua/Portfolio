@@ -102,6 +102,7 @@ const AllHills = () => {
 				},
 			};
 		});
+
 	}, [global.scene.refreshKey]);
 
 	return (

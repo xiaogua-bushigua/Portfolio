@@ -1,4 +1,4 @@
-import React, { useMemo, useContext } from 'react';
+import React, { useContext } from 'react';
 import Gift from './Gift';
 import { MyContext } from '../App';
 
@@ -44,10 +44,10 @@ const information = [
 	},
 ];
 
-const Boxes = React.memo(() => {
+const Boxes = () => {
 	const { global } = useContext(MyContext);
 	// 挑选出宝箱的位置
-	const getWorks = useMemo(() => {
+	const getWorks = () => {
 		const arr = global.gift.positions;
 		const count = 4; // 需要选择 4 个
 		if (arr.length < count) return arr;
@@ -65,10 +65,10 @@ const Boxes = React.memo(() => {
 			shuffled.splice(randomIndex, 1);
 		}
 		return selected;
-	}, [global.gift.positions, global.scene.refreshKey]);
+	};
 	return (
 		<>
-			{getWorks.map((item, index) => (
+			{getWorks().map((item, index) => (
 				<Gift
 					key={'work_' + index}
 					position={[item.x, item.z + 0.1, item.y]}
@@ -77,6 +77,6 @@ const Boxes = React.memo(() => {
 			))}
 		</>
 	);
-});
+};
 
 export default Boxes;
