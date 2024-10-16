@@ -65,7 +65,7 @@ const Boxes = React.memo(() => {
 			shuffled.splice(randomIndex, 1);
 		}
 		return selected;
-	}, [global.gift.positions]);
+	}, [global.gift.positions, global.scene.refreshKey]);
 	return (
 		<>
 			{getWorks.map((item, index) => (

@@ -13,6 +13,7 @@ function App() {
 			transitionTime: 1.5,
 			waitTime: 2,
 			transitionStatus: false,
+			refreshKey: 0,
 		},
 		gift: {
 			information: {},

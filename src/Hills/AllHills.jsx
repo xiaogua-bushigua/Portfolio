@@ -25,11 +25,10 @@ const getMap = (height) => {
 	else return 'water';
 };
 
-const AllHills = ({ refreshKey }) => {
-	const { setGlobal } = useContext(MyContext);
+const AllHills = () => {
+	const { global, setGlobal } = useContext(MyContext);
 	let newRocks = [];
 	let newTrees = [];
-	let newBoxes = [];
 	let newDiffMaps = {
 		dirt: [],
 		dirt2: [],
@@ -49,12 +48,10 @@ const AllHills = ({ refreshKey }) => {
 	});
 	const [rocks, setRocks] = useState([]);
 	const [trees, setTrees] = useState([]);
-  const [boxes, setBoxes] = useState([]);
 
 	useEffect(() => {
 		setRocks([]);
 		setTrees([]);
-		setBoxes([]);
 		setDiffMaps({
 			dirt: [],
 			dirt2: [],
@@ -65,6 +62,7 @@ const AllHills = ({ refreshKey }) => {
 		});
 
 		const noise2D = createNoise2D();
+		let updatedBoxes = []; // 临时存储新生成的 boxes
 
 		for (let i = -15; i < 15; i++) {
 			for (let j = -15; j < 15; j++) {
@@ -84,7 +82,7 @@ const AllHills = ({ refreshKey }) => {
 					newTrees.push(new THREE.Vector3(tilePos(i, j).x, tilePos(i, j).y, height));
 				}
 				if (type === 'stone') {
-					newBoxes.push(new THREE.Vector3(tilePos(i, j).x, tilePos(i, j).y, height));
+					updatedBoxes.push(new THREE.Vector3(tilePos(i, j).x, tilePos(i, j).y, height));
 				}
 			}
 		}
@@ -93,20 +91,18 @@ const AllHills = ({ refreshKey }) => {
 		setDiffMaps(newDiffMaps);
 		setRocks(newRocks);
 		setTrees(newTrees);
-		setBoxes(newBoxes);
-	}, [refreshKey]);
 
-	useEffect(() => {
+		// 直接在此处更新 global 状态
 		setGlobal((prevGlobal) => {
 			return {
 				...prevGlobal,
 				gift: {
 					...prevGlobal.gift,
-					positions: boxes,
+					positions: updatedBoxes,
 				},
 			};
 		});
-	}, [boxes]);
+	}, [global.scene.refreshKey]);
 
 	return (
 		<>

@@ -12,7 +12,6 @@ import Layouts from './Layouts';
 import { MyContext } from './App';
 
 const MainScene = React.memo(() => {
-	const [refreshKey, setRefreshKey] = useState(0);
 	const { progress } = useProgress();
 	const { global, setGlobal } = useContext(MyContext);
 	const [ratio, setRatio] = useState(1);
@@ -23,7 +22,8 @@ const MainScene = React.memo(() => {
 		return () => {
 			const currentTime = new Date().getTime();
 			const tapLength = currentTime - lastTap;
-			if (tapLength < 500 && tapLength > 0) setRefreshKey((prevKey) => prevKey + 1);
+			if (tapLength < 500 && tapLength > 0)
+				setGlobal({ ...global, scene: { ...global.scene, refreshKey: global.scene.refreshKey + 1 } });
 			lastTap = currentTime;
 		};
 	})();
@@ -76,7 +76,7 @@ const MainScene = React.memo(() => {
 				/>
 				<ambientLight intensity={0.15} />
 				{/* models */}
-				<AllHills refreshKey={refreshKey} />
+				<AllHills />
 				<Selection>
 					<EffectComposer multisampling={8} autoClear={false}>
 						<Outline visibleEdgeColor="white" edgeStrength={100} width={1500} />
