@@ -26,9 +26,10 @@ const getMap = (height) => {
 };
 
 const AllHills = ({ refreshKey }) => {
-	const { global, setGlobal } = useContext(MyContext);
+	const { setGlobal } = useContext(MyContext);
 	let newRocks = [];
 	let newTrees = [];
+	let newBoxes = [];
 	let newDiffMaps = {
 		dirt: [],
 		dirt2: [],
@@ -48,10 +49,12 @@ const AllHills = ({ refreshKey }) => {
 	});
 	const [rocks, setRocks] = useState([]);
 	const [trees, setTrees] = useState([]);
+  const [boxes, setBoxes] = useState([]);
 
 	useEffect(() => {
 		setRocks([]);
 		setTrees([]);
+		setBoxes([]);
 		setDiffMaps({
 			dirt: [],
 			dirt2: [],
@@ -62,7 +65,6 @@ const AllHills = ({ refreshKey }) => {
 		});
 
 		const noise2D = createNoise2D();
-		let tempBoxes = [];
 
 		for (let i = -15; i < 15; i++) {
 			for (let j = -15; j < 15; j++) {
@@ -82,7 +84,7 @@ const AllHills = ({ refreshKey }) => {
 					newTrees.push(new THREE.Vector3(tilePos(i, j).x, tilePos(i, j).y, height));
 				}
 				if (type === 'stone') {
-					tempBoxes.push(new THREE.Vector3(tilePos(i, j).x, tilePos(i, j).y, height));
+					newBoxes.push(new THREE.Vector3(tilePos(i, j).x, tilePos(i, j).y, height));
 				}
 			}
 		}
@@ -91,17 +93,20 @@ const AllHills = ({ refreshKey }) => {
 		setDiffMaps(newDiffMaps);
 		setRocks(newRocks);
 		setTrees(newTrees);
+		setBoxes(newBoxes);
+	}, [refreshKey]);
+
+	useEffect(() => {
 		setGlobal((prevGlobal) => {
-			console.log(tempBoxes);
 			return {
 				...prevGlobal,
 				gift: {
 					...prevGlobal.gift,
-					positions: tempBoxes,
+					positions: boxes,
 				},
 			};
 		});
-	}, [refreshKey]);
+	}, [boxes]);
 
 	return (
 		<>
