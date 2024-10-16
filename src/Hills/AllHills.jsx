@@ -93,13 +93,14 @@ const AllHills = ({ refreshKey }) => {
 		setTrees(newTrees);
 
 		console.log(tempBoxes);
-		setGlobal({
-			...global,
+		setGlobal((prevGlobal) => ({
+			...prevGlobal,
 			gift: {
-				...global.gift,
+				...prevGlobal.gift,
 				positions: tempBoxes,
 			},
-		});
+		}));
+
 	}, [refreshKey]);
 
 	return (
