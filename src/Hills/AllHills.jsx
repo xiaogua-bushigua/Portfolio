@@ -91,16 +91,16 @@ const AllHills = ({ refreshKey }) => {
 		setDiffMaps(newDiffMaps);
 		setRocks(newRocks);
 		setTrees(newTrees);
-
-		console.log(tempBoxes);
-		setGlobal((prevGlobal) => ({
-			...prevGlobal,
-			gift: {
-				...prevGlobal.gift,
-				positions: tempBoxes,
-			},
-		}));
-
+		setGlobal((prevGlobal) => {
+			console.log(tempBoxes);
+			return {
+				...prevGlobal,
+				gift: {
+					...prevGlobal.gift,
+					positions: tempBoxes,
+				},
+			};
+		});
 	}, [refreshKey]);
 
 	return (
