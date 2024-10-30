@@ -3,7 +3,7 @@ import { useGLTF } from '@react-three/drei';
 import { Select } from '@react-three/postprocessing';
 import { MyContext } from '../App';
 
-const Gift = ({ position, information }) => {
+const Gift = React.memo(({ position, information }) => {
 	const { nodes, materials } = useGLTF('/3d assets/a_gift_box.glb');
 	const { global, setGlobal } = useContext(MyContext);
 	const [hovered, hover] = useState(null);
@@ -184,7 +184,7 @@ const Gift = ({ position, information }) => {
 			</group>
 		</Select>
 	);
-};
+});
 
 export default Gift;
 

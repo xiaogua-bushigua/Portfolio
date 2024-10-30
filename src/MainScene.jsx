@@ -97,7 +97,7 @@ const MainScene = () => {
 				<Sea />
 				<Wall />
 				<Floor />
-				<Cloud />
+				<Cloud refresh={global.scene.refreshKey} />
 			</Canvas>
 		</>
 	);

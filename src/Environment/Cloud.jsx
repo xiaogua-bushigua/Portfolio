@@ -1,7 +1,7 @@
 import React from 'react';
 import { Instances, Instance } from '@react-three/drei';
 
-const Cloud = () => {
+const Cloud = React.memo(({ refresh }) => {
 	const num = Math.floor(Math.pow(Math.random(), 0.45) * 4);
 
 	return (
@@ -21,6 +21,6 @@ const Cloud = () => {
 			))}
 		</Instances>
 	);
-};
+});
 
 export default Cloud;
