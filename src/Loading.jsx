@@ -114,7 +114,7 @@ const SunCloud = () => {
 			{global.scene.timeThreshold + global.scene.waitTime > global.scene.sunTime && (
 				<Html
 					style={{
-						margin: '40px -30px',
+						margin: '80px -30px',
 						fontFamily: 'zaozigongfangtianliti',
 						letterSpacing: '1px',
 						fontSize: '22px',
