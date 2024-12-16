@@ -44,15 +44,30 @@ const Layouts = () => {
 				}}
 			>
 				<span>Portfolio</span>
-				<a href="https://github.com/xiaogua-bushigua/Portfolio" target="_blank">
-					<img
-						src="./icons/github.png"
-						style={{
-							width: '48px',
-							height: '48px',
-						}}
-					/>
-				</a>
+				<ul style={{ display: 'flex', listStyle: 'none', gap: '12px', margin: '0' }}>
+					<li>
+						<a href="https://github.com/xiaogua-bushigua/Portfolio" target="_blank">
+							<img
+								src="./icons/github.png"
+								style={{
+									width: '40px',
+									height: '40px',
+								}}
+							/>
+						</a>
+					</li>
+					<li>
+						<a href="https://www.linkedin.com/in/henry-huang-b3102730b/" target="_blank">
+							<img
+								src="./icons/linkedin.svg"
+								style={{
+									width: '40px',
+									height: '40px',
+								}}
+							/>
+						</a>
+					</li>
+				</ul>
 			</header>
 			<section className="instruction">
 				<ul style={{ fontSize: '18px', letterSpacing: '0.04em' }}>
